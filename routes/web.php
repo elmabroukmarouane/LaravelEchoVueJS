@@ -20,4 +20,4 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 
 // Conversations Management
-Route::resource('conversations', 'UnitsController');
+Route::resource('conversations', 'ConversationsController');

@@ -3,9 +3,21 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\User;
+use Auth;
 
 class ConversationsController extends Controller
 {
+    /**
+     * Instantiate a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -13,7 +25,9 @@ class ConversationsController extends Controller
      */
     public function index()
     {
-        
+        $user = Auth::user();
+        $users = User::where('id', '!=', $user->id)->get();
+        return view('conversations.index', compact('users'));
     }
 
     /**
